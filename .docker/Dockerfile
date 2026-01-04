@@ -3,13 +3,14 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build # Compiles TS to JS once
+RUN npm run build
 
 FROM node:20-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/build ./build
 COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/.docker/entrypoint.sh ./.docker/entrypoint.sh
+COPY --from=builder /usr/src/app/package.json ./package.json
+COPY --from=builder /usr/src/app/.docker/entrypoint.sh ./entrypoint.sh
 
-RUN chmod +x /usr/src/app/.docker/entrypoint.sh
-ENTRYPOINT ["/usr/src/app/.docker/entrypoint.sh"]
+RUN chmod +x .docker/entrypoint.sh
+ENTRYPOINT [".docker/entrypoint.sh"]
