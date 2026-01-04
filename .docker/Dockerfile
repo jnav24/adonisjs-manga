@@ -12,5 +12,5 @@ COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package.json ./package.json
 COPY --from=builder /usr/src/app/.docker/mysql/entrypoint.sh ./entrypoint.sh
 
-RUN chmod +x .docker/entrypoint.sh
-ENTRYPOINT [".docker/entrypoint.sh"]
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
