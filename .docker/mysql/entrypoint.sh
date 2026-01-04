@@ -1,10 +1,17 @@
 #!/bin/sh
 
-# Wait for MySQL to be ready (optional but recommended)
-echo "Waiting for database..."
+echo "Running in ${NODE_ENV} mode..."
 
-# Run migrations
-node ace migration:run --force
+# bun install
+# node ace migration:run --force
 
-# Start the application
-exec bun run dev
+if [ "${NODE_ENV}" = "production" ]; then
+   echo "Starting Production Server..."
+   node ace migration:run --force
+   # bun run build
+   exec node build/bin/server.js
+else
+    echo "Starting Development Server..."
+    node ace migration:run
+    exec bun run dev
+fi
