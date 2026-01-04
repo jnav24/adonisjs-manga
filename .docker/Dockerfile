@@ -1,11 +1,11 @@
-FROM oven/bun:latest AS builder
+FROM node:20-alpine AS builder
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 RUN npm run build # Compiles TS to JS once
 
-FROM oven/bun:latest
+FROM node:20-alpine
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/build ./build
 COPY --from=builder /usr/src/app/node_modules ./node_modules
