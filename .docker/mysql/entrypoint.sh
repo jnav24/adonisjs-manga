@@ -13,5 +13,5 @@ if [ "${NODE_ENV}" = "production" ]; then
 else
     echo "Starting Development Server..."
     node ace migration:run
-    exec bun run dev
+    exec npm run dev
 fi
