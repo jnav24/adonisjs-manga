@@ -7,7 +7,7 @@ echo "Running in ${NODE_ENV} mode..."
 
 if [ "${NODE_ENV}" = "production" ]; then
    echo "Starting Production Server..."
-   node ace migration:run --force
+   node build/ace.js migration:run --force
    # bun run build
    exec node build/bin/server.js
 else
