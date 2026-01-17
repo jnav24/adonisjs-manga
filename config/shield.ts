@@ -17,8 +17,8 @@ const shieldConfig = defineConfig({
    */
   csrf: {
     enabled: true,
-    exceptRoutes: [],
-    enableXsrfCookie: false,
+    exceptRoutes: ['/mangas'],
+    enableXsrfCookie: true,
     methods: ['POST', 'PUT', 'PATCH', 'DELETE'],
   },
 
