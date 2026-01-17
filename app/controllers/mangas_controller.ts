@@ -29,6 +29,7 @@ export default class MangasController {
     const chapters = []
 
     console.log('manga directory: ', mangaDir)
+    console.log('manga directory objects: ', mangaDir.objects)
     for (let item of mangaDir.objects) {
       console.log('item: ', item)
       if (item.isDirectory) {
