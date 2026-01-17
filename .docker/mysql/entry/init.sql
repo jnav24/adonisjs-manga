@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON *.* TO 'adonisjs_user'@'%';
+GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'%';
 FLUSH PRIVILEGES;

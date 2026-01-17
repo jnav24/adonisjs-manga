@@ -2,6 +2,8 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Manga extends BaseModel {
+  public static table = 'mangas'
+
   @column({ isPrimary: true })
   declare id: number
 
