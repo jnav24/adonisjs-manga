@@ -3,6 +3,7 @@ import drive from '@adonisjs/drive/services/main'
 import router from '@adonisjs/core/services/router'
 import Manga from '#models/manga'
 import { createMangaValidator } from '#validators/manga'
+import app from '@adonisjs/core/services/app'
 
 export default class MangasController {
   async index(ctx: HttpContext) {
@@ -27,8 +28,12 @@ export default class MangasController {
     const disk = drive.use()
     const mangaDir = await disk.listAll(manga.location)
     const chapters = []
+    const storage = await disk.listAll()
 
-    console.log('storage: ', await disk.listAll())
+    console.log('app path', app.makePath('storage'))
+    console.log('storage: ', storage)
+    console.log('storage objects: ', storage.objects)
+    console.log('storage objects: ', JSON.stringify(storage.objects))
     console.log('manga location: ', manga.location)
     console.log('manga directory: ', mangaDir)
     console.log('manga directory objects: ', mangaDir.objects)
