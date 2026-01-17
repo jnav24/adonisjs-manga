@@ -9,6 +9,7 @@
 <ul>
   @each(chapter in chapters)
     <li>
+      <p>{{ chapter.name }}</p>
       <a href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}">Read</a>
     </li>
   @else
