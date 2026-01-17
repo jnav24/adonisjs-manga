@@ -37,6 +37,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+      - ./.docker/mysql/entry:/docker-entrypoint-initdb.d
     networks:
       - adonis-net
 
