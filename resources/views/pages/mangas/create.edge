@@ -2,26 +2,33 @@
 
 <a href="{{ route('mangas.index') }}">Back to Manga</a>
 
+@if(flashMessages.has('errors.title'))
+  <p class="text-red-500"> {{ flashMessages.get('errors.title') }} </p>
+@endif
+
 <form action="{{ route('mangas.store') }}" method="post">
   {{ csrfField() }}
 
   <label for="name">Name</label>
-  <input type="text" id="name" name="name" />
+  <input type="text" id="name" name="name" value="{{ old('name') || '' }}" />
 
   <label for="author">Author</label>
-  <input type="text" name="author" />
+  <input type="text" name="author" value="{{ old('author') || '' }}" />
 
   <label for="description">Description</label>
   <textarea name="description"></textarea>
 
   <label for="location">Location</label>
-  <input type="text" name="location" />
+  <input type="text" name="location" value="{{ old('location') || '' }}" />
 
   <label for="thumbnail">Thumbnail</label>
-  <input type="text" name="thumbnail" />
+  <input type="text" name="thumbnail" value="{{ old('thumbnail') || '' }}" />
 
   <label for="poster">Poster</label>
-  <input type="text" name="poster" />
+  <input type="text" name="poster" value="{{ old('poster') || '' }}" />
+
+  <label for="banner">Banner</label>
+  <input type="text" name="banner" value="{{ old('banner') || '' }}" />
 
   <button type="submit">Create</button>
 </form>
