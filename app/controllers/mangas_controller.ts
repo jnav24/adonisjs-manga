@@ -25,7 +25,7 @@ export default class MangasController {
   async show({ params, view }: HttpContext) {
     const manga = await Manga.findOrFail(params.id)
     const disk = drive.use()
-    const mangaDir = await disk.listAll(`mangas/${manga.location}`)
+    const mangaDir = await disk.listAll(manga.location)
     const chapters = []
 
     for (let item of mangaDir.objects) {

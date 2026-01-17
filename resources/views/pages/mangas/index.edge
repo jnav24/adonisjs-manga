@@ -3,6 +3,7 @@
   <a href="{{ route('mangas.create') }}">Create Manga</a>
 
   @each(manga in mangas)
+    <p>{{ manga.name }}</p>
     <a href="{{ route('mangas.show', [manga.id]) }}">View Manga</a>
   @else
     <p>There are no mangas here
