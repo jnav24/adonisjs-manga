@@ -1,0 +1,27 @@
+<h1>Manga Create</h1>
+
+<a href="{{ route('mangas.index') }}">Back to Manga</a>
+
+<form action="{{ route('mangas.store') }}" method="post">
+  {{ csrfField() }}
+
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" />
+
+  <label for="author">Author</label>
+  <input type="text" name="author" />
+
+  <label for="description">Description</label>
+  <textarea name="description"></textarea>
+
+  <label for="location">Location</label>
+  <input type="text" name="location" />
+
+  <label for="thumbnail">Thumbnail</label>
+  <input type="text" name="thumbnail" />
+
+  <label for="poster">Poster</label>
+  <input type="text" name="poster" />
+
+  <button type="submit">Create</button>
+</form>

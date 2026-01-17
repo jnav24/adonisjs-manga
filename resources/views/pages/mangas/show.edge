@@ -1,0 +1,18 @@
+<h1>Manga Show</h1>
+
+<a href="{{ route('mangas.edit', [manga.id]) }}">Edit Manga</a>
+<a href="{{ route('mangas.index') }}">Back to Manga</a>
+
+<p>{{ manga.name }}</p>
+<p>{{ manga.author }}</p>
+<p>{{ manga.description }}</p>
+
+<ul>
+  @each(chapter in chapters)
+    <li>
+      <a href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}">Read</a>
+    </li>
+  @else
+    <li>No chapters found</li>
+  @end
+</ul>

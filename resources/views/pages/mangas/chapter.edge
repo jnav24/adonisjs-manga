@@ -1,0 +1,11 @@
+<h1>Chapter {{ chapterId }}</h1>
+
+<ul>
+  @each(image in images)
+    <li>
+      <img src="{{ image.url }}" alt="{{ image.name }}" />
+    </li>
+  @else
+    <li>No images found</li>
+  @end
+</ul>

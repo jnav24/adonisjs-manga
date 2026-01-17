@@ -1,0 +1,10 @@
+@layout.dashboard({ title: 'Dashboard' })
+  <h1>Mangas</h1>
+  <a href="{{ route('mangas.create') }}">Create Manga</a>
+
+  @each(manga in mangas)
+    <a href="{{ route('mangas.show', [manga.id]) }}">View Manga</a>
+  @else
+    <p>There are no mangas here
+  @end
+@end

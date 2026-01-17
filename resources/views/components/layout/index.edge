@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga App - @yield('title', 'Welcome')</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+  <nav>
+    <a href="{{ route('mangas.index') }}">Home</a>
+    <a href="{{ route('mangas.create') }}">Create Manga</a>
+  </nav>
+
+  <main>
+    index
+    @if(flashMessages.has('success'))
+      <div class="alert alert-success">
+        {{ flashMessages.get('success') }}
+      </div>
+    @endif
+
+    {{{ await $slots.main() }}}
+  </main>
+
+  <footer>
+    &copy; {{ new Date().getFullYear() }} Manga App
+  </footer>
+</body>
+</html>

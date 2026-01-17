@@ -9,6 +9,9 @@ export default defineConfig({
     fs: services.fs({
       location: app.makePath('storage'),
       visibility: 'private',
+      // appUrl: 'http://localhost:3000',
+      serveFiles: false,
+      // routeBasePath: '/storage',
     }),
   },
 })
