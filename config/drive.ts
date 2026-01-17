@@ -7,7 +7,7 @@ export default defineConfig({
 
   services: {
     fs: services.fs({
-      location: app.makePath('storage'),
+      location: app.makePath('..', 'storage'),
       visibility: 'private',
       // appUrl: 'http://localhost:3000',
       serveFiles: false,
