@@ -28,6 +28,7 @@ export default class MangasController {
     const mangaDir = await disk.listAll(manga.location)
     const chapters = []
 
+    console.log('storage: ', await disk.listAll())
     console.log('manga location: ', manga.location)
     console.log('manga directory: ', mangaDir)
     console.log('manga directory objects: ', mangaDir.objects)
