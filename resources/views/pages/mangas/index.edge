@@ -7,7 +7,7 @@
           <div class="bg-red-300 w-48 h-64 overflow-hidden mr-4">
             <img
               class="object-fill"
-              src="{{ route('signed.drive.view', { path: [manga.location, manga.poster].join('/') }, { signature: true, expiresIn: '5m' }) }}"
+              src="{{ route('signed.drive.view', { path: [manga.location, manga.poster] }, { signature: true, expiresIn: '5m' }) }}"
               alt="{{ manga.name }}"
             />
           </div>
