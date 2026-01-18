@@ -15,7 +15,7 @@ const MangasController = () => import('#controllers/mangas_controller')
 router.on('/').render('pages/home')
 
 router
-  .get('/storage/mangas/:path*', async ({ request, response }) => {
+  .get('/storage/mangas/*', async ({ request, response }) => {
     if (!request.hasValidSignature()) {
       return response.forbidden('Invalid or expired signature')
     }
