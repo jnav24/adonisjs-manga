@@ -52,6 +52,7 @@ export default class MangasController {
   }
 
   async update({ params, request, response, session }: HttpContext) {
+    console.log('request: ', request.all())
     const payload = await request.validateUsing(createMangaValidator)
     console.log('payload: ', payload)
     const manga = await Manga.findOrFail(params.id)
