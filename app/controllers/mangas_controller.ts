@@ -42,6 +42,7 @@ export default class MangasController {
 
   async edit({ params, view }: HttpContext) {
     const manga = await Manga.findOrFail(params.id)
+    console.log(manga)
     return view.render('pages/mangas/edit', { manga })
   }
 
