@@ -1,18 +1,24 @@
-<h1>Manga Show</h1>
+@layout.dashboard({ title: 'Dashboard' })
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl">{{ manga.name }}</h1>
 
-<a href="{{ route('mangas.edit', [manga.id]) }}">Edit Manga</a>
-<a href="{{ route('mangas.index') }}">Back to Manga</a>
+    <div>
+      <a href="{{ route('mangas.edit', [manga.id]) }}">Edit Manga</a>
+      <a href="{{ route('mangas.index') }}">Back to Manga</a>
+    </div>
+  </div>
 
-<p>{{ manga.name }}</p>
-<p>{{ manga.description }}</p>
+  <p>{{ manga.name }}</p>
+  <p>{{ manga.description }}</p>
 
-<ul>
-  @each(chapter in chapters)
-    <li>
-      <p>{{ chapter.name }}</p>
-      <a href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}">Read</a>
-    </li>
-  @else
-    <li>No chapters found</li>
-  @end
-</ul>
+  <ul>
+    @each(chapter in chapters)
+      <li>
+        <p>{{ chapter.name }}</p>
+        <a href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}">Read</a>
+      </li>
+    @else
+      <li>No chapters found</li>
+    @end
+  </ul>
+@end

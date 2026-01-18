@@ -7,23 +7,29 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-  <nav>
-    <a href="{{ route('mangas.index') }}">Home</a>
-    <a href="{{ route('mangas.create') }}">Create Manga</a>
-  </nav>
+  <div class="fixed h-screen w-screen p-2">
+      <div class="bg-violet-600 rounded-full size-64 absolute -top-[5%] right-[25%]"></div>
+      <div class="bg-amber-400/65 rounded-full size-150 absolute top-[40%] -left-[10%]"></div>
+      <div class="bg-rose-400/45 rounded-full size-116 absolute -bottom-24 -right-12"></div>
 
-  <main>
-    @if(flashMessages.has('success'))
-      <div class="alert alert-success">
-        {{ flashMessages.get('success') }}
-      </div>
-    @endif
+      <div class="relative bg-white/30 backdrop-blur-3xl h-full w-full rounded-lg p-6 shadow-lg"></div>
+  </div>
 
-    {{{ await $slots.main() }}}
-  </main>
+  <div class="relative container mx-auto z-10">
+    <nav class="flex items-center justify-between mb-8 min-h-16">
+      <a href="{{ route('mangas.index') }}">Home</a>
+      <a href="{{ route('mangas.create') }}">Create Manga</a>
+    </nav>
 
-  <footer>
-    &copy; {{ new Date().getFullYear() }} Manga App
-  </footer>
+    <main>
+      @if(flashMessages.has('success'))
+        <div class="alert alert-success">
+          {{ flashMessages.get('success') }}
+        </div>
+      @endif
+
+      {{{ await $slots.main() }}}
+    </main>
+  </div>
 </body>
 </html>

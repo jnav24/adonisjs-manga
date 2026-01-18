@@ -1,11 +1,32 @@
 @layout.dashboard({ title: 'Dashboard' })
-  <h1>Mangas</h1>
-  <a href="{{ route('mangas.create') }}">Create Manga</a>
+  <h1 class="text-2xl mb-8">Favorite Mangas</h1>
 
-  @each(manga in mangas)
-    <p>{{ manga.name }}</p>
-    <a href="{{ route('mangas.show', [manga.id]) }}">View Manga</a>
-  @else
-    <p>There are no mangas here
-  @end
+  <div class="grid grid-cols-4 gap-4">
+    @each(manga in mangas)
+        <div class="flex items-start pb-12">
+          <div class="bg-red-300 w-48 h-64 overflow-hidden mr-4">
+            <img
+              class="object-fill"
+              src="{{ route('signed.drive.view', [manga.poster], { expiresIn: '5m', signature: true }) }}"
+              alt="{{ manga.name }}"
+            />
+          </div>
+          <div class="flex flex-col h-full justify-between">
+            <div class="flex-1">
+              <p>{{ manga.name }}</p>
+              <p>{{ manga.author }}</p>
+              <p>{{ manga.description }}</p>
+            </div>
+            <div></div>
+            <a
+              class="bg-violet-600 text-white px-4 py-2 rounded-xl"
+              href="{{ route('mangas.show', [manga.id]) }}">
+              Read Manga
+            </a>
+          </div>
+        </div>
+      @else
+        <p>There are no mangas here
+      @end
+  </div>
 @end

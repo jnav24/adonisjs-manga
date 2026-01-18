@@ -1,3 +1,19 @@
 <h1>Manga Edit</h1>
+@layout.dashboard({ title: 'Dashboard' })
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl">Edit {{ manga.name }}</h1>
+
+    <div>
+      <a href="{{ route('mangas.show', [manga.id]) }}">Back to Manga</a>
+    </div>
+  </div>
+
+  @!component('partials.forms.manga_form', {
+    action: route('mangas.update', [manga.id]),
+    method: 'PUT',
+    buttonText: 'Update Manga',
+    manga: { ...manga, ...old() }
+  })
+@end
 
 
