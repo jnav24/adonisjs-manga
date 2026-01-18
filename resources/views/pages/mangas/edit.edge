@@ -12,7 +12,7 @@
     action: route('mangas.update', [manga.id]),
     method: 'PUT',
     buttonText: 'Update Manga',
-    manga: { ...manga, ...flashMessages.all() }
+    manga: { ...(manga?.serialize?.() || manga), ...flashMessages.all() }
   })
 @end
 
