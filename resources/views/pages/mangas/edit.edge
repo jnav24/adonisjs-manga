@@ -12,7 +12,7 @@
     action: route('mangas.update', [manga.id]),
     method: 'PUT',
     buttonText: 'Update Manga',
-    manga: { ...manga, ...old() }
+    manga: { ...manga, ...flashMessages.all() }
   })
 @end
 
