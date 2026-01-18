@@ -14,6 +14,11 @@ const MangasController = () => import('#controllers/mangas_controller')
 
 router.on('/').render('pages/home')
 
+router.resource('mangas', MangasController)
+router
+  .get('mangas/:mangaId/chapters/:chapterId', [MangasController, 'chapter'])
+  .as('mangas.chapter')
+
 router
   .get('/storage/mangas/*', async ({ request, response }) => {
     if (!request.hasValidSignature()) {
@@ -30,8 +35,3 @@ router
     }
   })
   .as('signed.drive.view')
-
-router.resource('mangas', MangasController)
-router
-  .get('mangas/:mangaId/chapters/:chapterId', [MangasController, 'chapter'])
-  .as('mangas.chapter')
