@@ -8,6 +8,9 @@
     </div>
   </div>
 
+  <pre>{{ route('mangas.update', [manga.id], { formAction: 'put' }) }}</pre>
+  <pre>{{ route('mangas.update', [manga.id], { _method: 'put' }) }}</pre>
+
   @!component('partials/manga_form', {
     action: route('mangas.update', [manga.id], { formAction: 'put' }),
     method: 'PUT',
