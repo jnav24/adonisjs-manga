@@ -40,11 +40,18 @@ export default class MangasController {
     })
   }
 
-  edit({ view }: HttpContext) {
-    return view.render('pages/mangas/edit')
+  async edit({ params, view }: HttpContext) {
+    const manga = await Manga.findOrFail(params.id)
+    return view.render('pages/mangas/edit', { manga })
   }
 
-  update() {}
+  async update({ params, request, response, session }: HttpContext) {
+    const payload = await request.validateUsing(createMangaValidator)
+    const manga = await Manga.findOrFail(params.id)
+    await manga.merge(payload).save()
+    session.flash('success', 'Manga updated successfully')
+    return response.redirect().toRoute('mangas.show', [manga.id])
+  }
 
   destroy() {}
 
