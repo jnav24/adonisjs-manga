@@ -8,11 +8,11 @@
     </div>
   </div>
 
-  <pre>{{ route('mangas.update', [manga.id], { formAction: 'put' }) }}</pre>
-  <pre>{{ route('mangas.update', [manga.id], { _method: 'put' }) }}</pre>
+  <pre>{{ route('mangas.update', [1], { qs: { formAction: 'put' } }) }}</pre>
+  <pre>{{ route('mangas.update', [1], { qs: { _method: 'put' } }) }}</pre>
 
   @!component('partials/manga_form', {
-    action: route('mangas.update', [manga.id], { formAction: 'put' }),
+    action: route('mangas.update', [manga.id], { qs: { formAction: 'put' } }),
     method: 'PUT',
     buttonText: 'Update Manga',
     manga: { ...(manga?.serialize?.() || manga), ...flashMessages.all() }
