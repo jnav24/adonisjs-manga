@@ -12,7 +12,7 @@
   <pre>{{ route('mangas.update', [1], { qs: { _method: 'put' } }) }}</pre>
 
   @!component('partials/manga_form', {
-    action: route('mangas.update', [manga.id], { qs: { formAction: 'put' } }),
+    action: route('mangas.update', [manga.id], { qs: { _method: 'put' } }),
     method: 'PUT',
     buttonText: 'Update Manga',
     manga: { ...(manga?.serialize?.() || manga), ...flashMessages.all() }
