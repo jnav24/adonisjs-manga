@@ -8,7 +8,7 @@ export default class MangasController {
   async index(ctx: HttpContext) {
     const mangas = await Manga.all()
     const serializedMangas = mangas.map((manga) => ({
-      ...manga,
+      ...manga.serialize(),
       signedPosterUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.poster], {
         expiresIn: '5m',
       }),
