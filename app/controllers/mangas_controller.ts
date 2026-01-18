@@ -7,7 +7,13 @@ import { createMangaValidator } from '#validators/manga'
 export default class MangasController {
   async index(ctx: HttpContext) {
     const mangas = await Manga.all()
-    return ctx.view.render('pages/mangas/index', { mangas })
+    const serializedMangas = mangas.map((manga) => ({
+      ...manga,
+      signedPosterUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.poster], {
+        expiresIn: '5m',
+      }),
+    }))
+    return ctx.view.render('pages/mangas/index', { mangas: serializedMangas })
   }
 
   create({ view }: HttpContext) {

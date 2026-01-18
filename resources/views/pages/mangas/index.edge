@@ -7,7 +7,7 @@
           <div class="bg-red-300 w-48 h-64 overflow-hidden mr-4">
             <img
               class="object-fill"
-              src="{{ router.makeSignedUrl('signed.drive.view', { path: [manga.location, manga.poster] }, { expiresIn: '5m' }) }}"
+              src="{{ manga.signedPosterUrl }}"
               alt="{{ manga.name }}"
             />
           </div>
