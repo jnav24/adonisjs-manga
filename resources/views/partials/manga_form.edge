@@ -7,61 +7,61 @@
 
   <div class="space-y-4">
     <div class="space-y-2">
-      <label for="name">Name</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" id="name" name="name" value="{{ old('name') || manga.name || '' }}" />
+      <label class="block text-sm" for="name">Name</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" id="name" name="name" value="{{ old('name', manga.name) || '' }}" />
       @if(flashMessages.has('errors.name'))
         <span class="text-red-500"> {{ flashMessages.get('errors.name') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="author">Author</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" name="author" value="{{ old('author') || manga.author || '' }}" />
+      <label class="block text-sm" for="author">Author</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" name="author" value="{{ old('author', manga.author) || '' }}" />
       @if(flashMessages.has('errors.author'))
         <span class="text-red-500"> {{ flashMessages.get('errors.author') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="description">Description</label>
-      <textarea class="w-full px-3 py-2 border rounded-md" name="description">{{ old('description') || manga.description || '' }}</textarea>
+      <label class="block text-sm" for="description">Description</label>
+      <textarea class="w-full px-3 py-2 border rounded-md" name="description">{{ old('description', manga.description) || '' }}</textarea>
       @if(flashMessages.has('errors.description'))
         <span class="text-red-500"> {{ flashMessages.get('errors.description') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="location">Location</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" name="location" value="{{ old('location') || manga.location || '' }}" />
+      <label class="block text-sm" for="location">Location</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" name="location" value="{{ old('location', manga.location) || '' }}" />
       @if(flashMessages.has('errors.location'))
         <span class="text-red-500"> {{ flashMessages.get('errors.location') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="thumbnail">Thumbnail</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" name="thumbnail" value="{{ old('thumbnail') || manga.thumbnail || '' }}" />
+      <label class="block text-sm" for="thumbnail">Thumbnail</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" name="thumbnail" value="{{ old('thumbnail', manga.thumbnail) || '' }}" />
       @if(flashMessages.has('errors.thumbnail'))
         <span class="text-red-500"> {{ flashMessages.get('errors.thumbnail') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="poster">Poster</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" name="poster" value="{{ old('poster') || manga.poster || '' }}" />
+      <label class="block text-sm" for="poster">Poster</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" name="poster" value="{{ old('poster', manga.poster) || '' }}" />
       @if(flashMessages.has('errors.poster'))
         <span class="text-red-500"> {{ flashMessages.get('errors.poster') }} </span>
       @endif
     </div>
 
     <div class="space-y-2">
-      <label for="banner">Banner</label>
-      <input class="w-full px-3 py-2 border rounded-md" type="text" name="banner" value="{{ old('banner') || manga.banner || '' }}" />
+      <label class="block text-sm" for="banner">Banner</label>
+      <input class="w-full px-3 py-2 border rounded-md" type="text" name="banner" value="{{ old('banner', manga.banner) || '' }}" />
       @if(flashMessages.has('errors.banner'))
         <span class="text-red-500"> {{ flashMessages.get('errors.banner') }} </span>
       @endif
     </div>
 
-    <button type="submit">Create</button>
+    <button class="bg-violet-600 text-white px-14 py-2 rounded-xl" type="submit">{{ buttonText }}</button>
   </div>
 </form>
