@@ -9,7 +9,7 @@
   </div>
 
   @!component('partials/manga_form', {
-    action: route('mangas.update', [manga.id]),
+    action: route('mangas.update', [manga.id, { _method: 'PUT' }]),
     method: 'PUT',
     buttonText: 'Update Manga',
     manga: { ...(manga?.serialize?.() || manga), ...flashMessages.all() }
