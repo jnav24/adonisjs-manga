@@ -7,12 +7,17 @@ import { createMangaValidator } from '#validators/manga'
 export default class MangasController {
   async index(ctx: HttpContext) {
     const mangas = await Manga.all()
-    const serializedMangas = mangas.map((manga) => ({
-      ...manga.serialize(),
-      signedPosterUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.poster], {
-        expiresIn: '5m',
-      }),
-    }))
+    const serializedMangas = mangas
+      .map((manga) => ({
+        ...manga.serialize(),
+        signedPosterUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.poster], {
+          expiresIn: '5m',
+        }),
+      }))
+      .sort((a: any, b: any) => {
+        return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+      })
+
     return ctx.view.render('pages/mangas/index', { mangas: serializedMangas })
   }
 
