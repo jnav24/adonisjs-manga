@@ -39,6 +39,17 @@
 
     <div>
       <h2 class="mb-8 text-2xl">Favorites</h2>
+
+      <ul class="bg-white rounded-lg overflow-hidden shadow-lg">
+        @each (favorite in favorites)
+          <li class="flex items-center justify-between py-2 px-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-100">
+            <p>{{ favorite.name }}</p>
+            <a href="{{ route('mangas.chapter', [favorite.manga_id, favorite.chapter_id]) }}">Read</a>
+          </li>
+        @else
+          <li>No favorites found</li>
+        @end
+      </ul>
     </div>
   </div>
 @end
