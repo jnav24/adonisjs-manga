@@ -8,22 +8,35 @@
     </div>
   </div>
 
-  <div class="w-100 h-64 bg-red-300 overflow-hidden rounded-lg relative">
+  <div class="w-full h-72 bg-red-300 overflow-hidden rounded-2xl relative">
     <img src="{{ manga.signedBannerUrl }}" alt="{{ manga.name }}" class="object-cover w-full h-full" />
 
-    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent">
-      <p>{{ manga.description }}</p>
+    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent flex flex-col justify-end">
+      <p class="text-white text-4xl p-8">{{{ manga.description }}}</p>
     </div>
   </div>
 
-  <ul>
-    @each(chapter in chapters)
-      <li>
-        <p>{{ chapter.name }}</p>
-        <a href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}">Read</a>
-      </li>
-    @else
-      <li>No chapters found</li>
-    @end
-  </ul>
+  <div class="grid grid-cols-3 gap-4">
+    <div>
+      <h2>Chapters</h2>
+
+      <ul class="bg-white rounded-lg overflow-hidden">
+          @each(chapter in chapters)
+            <li class="flex items-center justify-between py-2 px-4 border-b border-gray-100 last:border-b-0">
+              <p>{{ chapter.name }}</p>
+              <a
+                class="rounded-lg bg-violet-600 text-white px-4 py-2"
+                href="{{ route('mangas.chapter', [manga.id, chapter.name]) }}"
+              >
+                Read
+              </a>
+            </li>
+          @else
+            <li>No chapters found</li>
+          @end
+        </ul>
+    </div>
+
+    <div></div>
+  </div>
 @end
