@@ -40,6 +40,6 @@ export default class MangaService {
   public static async getChapterLinks(location: string, chapterId: string) {
     const chapters = await this.getAllChapters(location)
     const chapterIndex = chapters.findIndex((chapter) => chapter.name === chapterId)
-    return { next: chapters[chapterIndex + 1], previous: chapters[chapterIndex - 1] }
+    return { next: chapters[chapterIndex - 1], previous: chapters[chapterIndex + 1] }
   }
 }
