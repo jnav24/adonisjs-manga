@@ -2,14 +2,19 @@
   <div class="flex justify-between items-center mb-8">
     <h1 class="text-2xl">{{ manga.name }}</h1>
 
-    <div>
+    <div class="space-x-4">
       <a href="{{ route('mangas.edit', [manga.id]) }}">Edit Manga</a>
       <a href="{{ route('mangas.index') }}">Back to Manga</a>
     </div>
   </div>
 
-  <p>{{ manga.name }}</p>
-  <p>{{ manga.description }}</p>
+  <div class="w-100 h-64 bg-red-300 overflow-hidden rounded-lg relative">
+    <img src="{{ manga.signedBannerUrl }}" alt="{{ manga.name }}" class="object-cover w-full h-full" />
+
+    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent">
+      <p>{{ manga.description }}</p>
+    </div>
+  </div>
 
   <ul>
     @each(chapter in chapters)

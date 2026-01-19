@@ -41,12 +41,20 @@ export default class MangasController {
     }
 
     chapters.sort((a, b) => {
-      return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+      return b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' })
     })
 
     return view.render('pages/mangas/show', {
       chapters,
-      manga,
+      manga: {
+        ...manga.serialize(),
+        signedBannerUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.banner], {
+          expiresIn: '5m',
+        }),
+        signedPosterUrl: router.makeSignedUrl('signed.drive.view', [manga.location, manga.poster], {
+          expiresIn: '5m',
+        }),
+      },
     })
   }
 
