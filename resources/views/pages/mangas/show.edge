@@ -1,10 +1,17 @@
 @layout.dashboard({ title: 'Dashboard' })
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-2xl">{{ manga.name }}</h1>
+    <div class="flex items-center space-x-4">
+      <a href="{{ route('mangas.index') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+        <span>Back to Manga</span>
+      </a>
+      <h1 class="text-2xl">{{ manga.name }}</h1>
+    <div>
 
     <div class="space-x-4">
       <a href="{{ route('mangas.edit', [manga.id]) }}">Edit Manga</a>
-      <a href="{{ route('mangas.index') }}">Back to Manga</a>
     </div>
   </div>
 
@@ -32,7 +39,7 @@
               </a>
             </li>
           @else
-            <li>No chapters found</li>
+            <li class="py-2 px-4 text-center">No chapters found</li>
           @end
         </ul>
     </div>
@@ -47,7 +54,7 @@
             <a href="{{ route('mangas.chapter', [favorite.manga_id, favorite.chapter_id]) }}">Read</a>
           </li>
         @else
-          <li>No favorites found</li>
+          <li class="py-2 px-4 text-center">No favorites found</li>
         @end
       </ul>
     </div>
