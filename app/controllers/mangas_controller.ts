@@ -40,6 +40,10 @@ export default class MangasController {
       }
     }
 
+    chapters.sort((a, b) => {
+      return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+    })
+
     return view.render('pages/mangas/show', {
       chapters,
       manga,
@@ -52,13 +56,9 @@ export default class MangasController {
   }
 
   async update({ params, request, response, session }: HttpContext) {
-    console.log('request: ', request.all())
     const payload = await request.validateUsing(createMangaValidator)
-    console.log('payload: ', payload)
     const manga = await Manga.findOrFail(params.id)
-    console.log('manga: ', manga.name)
     await manga.merge(payload).save()
-    console.log('manga after save: ', manga.name)
     session.flash('success', 'Manga updated successfully')
     return response.redirect().toRoute('mangas.show', [manga.id])
   }

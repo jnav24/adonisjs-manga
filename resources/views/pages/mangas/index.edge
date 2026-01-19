@@ -4,7 +4,7 @@
   <div class="grid grid-cols-4 gap-4">
     @each(manga in mangas)
         <div class="flex items-start pb-12">
-          <div class="bg-red-300 min-w-48 h-64 overflow-hidden mr-4">
+          <div class="bg-red-300 max-w-48 min-w-48 h-64 overflow-hidden mr-4">
             <img
               class="object-fill"
               src="{{ manga.signedPosterUrl }}"
