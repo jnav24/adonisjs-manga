@@ -1,8 +1,8 @@
 import { HttpContext } from '@adonisjs/core/http'
-import drive from '@adonisjs/drive/services/main'
 import router from '@adonisjs/core/services/router'
 import Manga from '#models/manga'
 import { createMangaValidator } from '#validators/manga'
+import MangaService from '#services/manga_service'
 
 export default class MangasController {
   async index(ctx: HttpContext) {
@@ -35,19 +35,7 @@ export default class MangasController {
 
   async show({ params, view }: HttpContext) {
     const manga = await Manga.findOrFail(params.id)
-    const disk = drive.use()
-    const mangaDir = await disk.listAll(manga.location)
-    const chapters = []
-
-    for (let item of mangaDir.objects) {
-      if (item.isDirectory) {
-        chapters.push(item)
-      }
-    }
-
-    chapters.sort((a, b) => {
-      return b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: 'base' })
-    })
+    const chapters = await MangaService.getAllChapters(manga.location)
 
     return view.render('pages/mangas/show', {
       chapters,
@@ -81,19 +69,15 @@ export default class MangasController {
   async chapter(ctx: HttpContext) {
     const { mangaId, chapterId } = ctx.params
     const manga = await Manga.findOrFail(mangaId)
-    const disk = drive.use()
-    const items = await disk.listAll(`${manga.location}/${chapterId}`)
-    const images = []
+    const images = await MangaService.getAllImagesFromChapter(manga.location, chapterId)
+    const { next, previous } = await MangaService.getChapterLinks(manga.location, chapterId)
 
-    for (let item of items.objects) {
-      if (item.isFile) {
-        const url = router.makeSignedUrl('signed.drive.view', [item.key], {
-          expiresIn: '1m',
-        })
-        images.push({ url, name: item.name })
-      }
-    }
-
-    return ctx.view.render('pages/mangas/chapter', { chapterId, images, manga })
+    return ctx.view.render('pages/mangas/chapter', {
+      chapterId,
+      images,
+      manga,
+      next,
+      previous,
+    })
   }
 }
